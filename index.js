@@ -17,59 +17,59 @@ let fecha = new Date().toLocaleString("es-PE", {
 });
 
 //fecha.setHours(fecha.getHours() - 5);
-// IpsAmazon.find({}).exec((err, ipsamazon) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     ipsamazon.forEach((item) => {
-//       const ip = item.ip_prefix.substr(0, item.ip_prefix.indexOf("/"));
-//       obtenerDelay(ip).then((resp) => {
-//         let delay = new PingAmazon({
-//           min: resp.min,
-//           max: resp.max,
-//           avg: resp.avg,
-//           stdev: resp.stdev,
-//           packetloss: resp.packetloss,
-//           host: resp.host,
-//           alive: resp.alive,
-//           prefijo: item._id,
-//           operador: proveedor,
-//           categoria: categoria,
-//           fecha: fecha,
-//         });
+IpsAmazon.find({}).exec((err, ipsamazon) => {
+  if (err) {
+    console.log(err);
+  } else {
+    ipsamazon.forEach((item) => {
+      const ip = item.ip_prefix.substr(0, item.ip_prefix.indexOf("/"));
+      obtenerDelay(ip).then((resp) => {
+        let delay = new PingAmazon({
+          min: resp.min,
+          max: resp.max,
+          avg: resp.avg,
+          stdev: resp.stdev,
+          packetloss: resp.packetloss,
+          host: resp.host,
+          alive: resp.alive,
+          prefijo: item._id,
+          operador: proveedor,
+          categoria: categoria,
+          fecha: fecha,
+        });
 
-//         delay.save();
-//       });
-//     });
-//   }
-// });
+        delay.save();
+      });
+    });
+  }
+});
 
-// IpsTutela.find({}).exec((err, ipstutela) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     ipstutela.forEach((item) => {
-//       const ip = item.ip;
-//       obtenerDelay(ip).then((resp) => {
-//         let delay = new PingTutela({
-//           min: resp.min,
-//           max: resp.max,
-//           avg: resp.avg,
-//           stdev: resp.stdev,
-//           packetloss: resp.packetloss,
-//           host: resp.host,
-//           alive: resp.alive,
-//           operador: proveedor,
-//           tipo: item.tipo,
-//           categoria: categoria,
-//           fecha: fecha,
-//         });
+IpsTutela.find({}).exec((err, ipstutela) => {
+  if (err) {
+    console.log(err);
+  } else {
+    ipstutela.forEach((item) => {
+      const ip = item.ip;
+      obtenerDelay(ip).then((resp) => {
+        let delay = new PingTutela({
+          min: resp.min,
+          max: resp.max,
+          avg: resp.avg,
+          stdev: resp.stdev,
+          packetloss: resp.packetloss,
+          host: resp.host,
+          alive: resp.alive,
+          operador: proveedor,
+          tipo: item.tipo,
+          categoria: categoria,
+          fecha: fecha,
+        });
 
-//         delay.save();
-//       });
-//     });
-//   }
-// });
+        delay.save();
+      });
+    });
+  }
+});
 
 IpsOpenSignal.find({}).exec((err, resultado) => {
   if (err) {
