@@ -17,32 +17,31 @@ schedule.scheduleJob("*/15 * * * *", function (fireDate) {
   });
 
   //fecha.setHours(fecha.getHours() - 5);
-  IpsAmazon.find({}).exec((err, ipsamazon) => {
-    if (err) {
-      console.log(err);
-    } else {
-      ipsamazon.forEach((item) => {
-        const ip = item.ip_prefix.substr(0, item.ip_prefix.indexOf("/"));
-        obtenerDelay(ip).then((resp) => {
-          let delay = new PingAmazon({
-            min: resp.min,
-            max: resp.max,
-            avg: resp.avg,
-            stdev: resp.stdev,
-            packetloss: resp.packetloss,
-            host: resp.host,
-            alive: resp.alive,
-            prefijo: item._id,
-            operador: proveedor,
-            categoria: categoria,
-            fecha: fecha,
-          });
-
-          delay.save();
-        });
-      });
-    }
-  });
+  // IpsAmazon.find({}).exec((err, ipsamazon) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     ipsamazon.forEach((item) => {
+  //       const ip = item.ip_prefix.substr(0, item.ip_prefix.indexOf("/"));
+  //       obtenerDelay(ip).then((resp) => {
+  //         let delay = new PingAmazon({
+  //           min: resp.min,
+  //           max: resp.max,
+  //           avg: resp.avg,
+  //           stdev: resp.stdev,
+  //           packetloss: resp.packetloss,
+  //           host: resp.host,
+  //           alive: resp.alive,
+  //           prefijo: item._id,
+  //           operador: proveedor,
+  //           categoria: categoria,
+  //           fecha: fecha,
+  //         });
+  //         delay.save();
+  //       });
+  //     });
+  //   }
+  // });
 
   IpsTutela.find({}).exec((err, ipstutela) => {
     if (err) {
