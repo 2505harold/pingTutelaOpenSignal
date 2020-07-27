@@ -11,7 +11,7 @@ const { proveedor, categoria } = require("./config/variables");
 
 //job cada 1 minutos
 
-schedule.scheduleJob("*/15 * * * *", function (fireDate) {
+//schedule.scheduleJob("*/15 * * * *", function (fireDate) {
   let fecha = new Date().toLocaleString("es-PE", {
     timeZone: "America/Lima",
   });
@@ -96,7 +96,7 @@ schedule.scheduleJob("*/15 * * * *", function (fireDate) {
       });
     }
   });
-});
+//});
 
 function obtenerDelay(ipdns) {
   return new Promise((resolve, reject) => {
